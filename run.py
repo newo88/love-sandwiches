@@ -62,6 +62,15 @@ def update_sale_worksheet(data):
     print('Sales worksheet updated successfully.\n')
 
 
+def update_surplace_worksheet(data):
+    """
+    Updates surplace worksheets, add new row with the list data provided
+    """
+    print("Updating sales worksheet....\n")
+    surplus_worksheet = SHEET.worksheet('surplus')
+    surplus_worksheet.append_row(data)
+    print('Surplace worksheet updated successfully.\n')
+
 def calculate_surplace_data(sales_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
@@ -88,6 +97,6 @@ def main():
     sales_data = [int(num) for num in data]
     update_sale_worksheet(sales_data)
     new_surplace_data = calculate_surplace_data(sales_data)
-    print(new_surplace_data)
+    update_surplace_worksheet(new_surplace_data)
 print("Welcome to Love Sandwiches Data Automation")
 main()
