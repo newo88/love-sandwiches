@@ -52,7 +52,7 @@ def validate_data(values):
     return True
 
 
-def update_worksheet (data, worksheet):
+def update_worksheet(data, worksheet):
     """
     Recieves a list of integers to be inserted into a worksheet
     Updated the relevant worksheet with the data provided
@@ -80,6 +80,19 @@ def calculate_surplace_data(sales_row):
     return surplace_data
 
 
+def get_last_5_entries_sales():
+    """
+    Collects collumns of data from sales worksheet
+    """
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    pprint(columns)
+
+
 def main():
     """
     run all program functions
@@ -89,5 +102,8 @@ def main():
     update_worksheet(sales_data, "sales")
     new_surplace_data = calculate_surplace_data(sales_data)
     update_worksheet(new_surplace_data, "surplus")
+
+
 print("Welcome to Love Sandwiches Data Automation")
-main()
+# main()
+get_last_5_entries_sales()
